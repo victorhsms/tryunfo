@@ -3,11 +3,13 @@ import PropTypes from 'prop-types';
 
 class Rarity extends Component {
   render() {
-    const { name, values } = this.props;
+    const { name, values, value, onInputChange } = this.props;
     return (
       <select
         name={ name }
         data-testid="rare-input"
+        value={ value }
+        onChange={ onInputChange }
       >
         <option value={ values[0] }>
           { values[0] }
@@ -26,6 +28,8 @@ class Rarity extends Component {
 Rarity.propTypes = {
   name: PropTypes.string.isRequired,
   values: PropTypes.arrayOf(PropTypes.string).isRequired,
+  value: PropTypes.string.isRequired,
+  onInputChange: PropTypes.func.isRequired,
 };
 
 export default Rarity;

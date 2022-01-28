@@ -3,14 +3,16 @@ import PropTypes from 'prop-types';
 
 class TextArea extends Component {
   render() {
-    const { name } = this.props;
+    const { name, value, onInputChange } = this.props;
     return (
-      <label htmlFor="description-imput">
+      <label htmlFor="description-input">
         {name}
         <textarea
           id={ name }
           name={ name }
           data-testid="description-input"
+          value={ value }
+          onChange={ onInputChange }
         />
       </label>
     );
@@ -19,6 +21,8 @@ class TextArea extends Component {
 
 TextArea.propTypes = {
   name: PropTypes.string.isRequired,
+  value: PropTypes.string.isRequired,
+  onInputChange: PropTypes.func.isRequired,
 };
 
 export default TextArea;
