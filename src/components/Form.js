@@ -31,7 +31,7 @@ class Form extends React.Component {
           onInputChange={ onInputChange }
         />
         <TextArea
-          name="Descrição"
+          name="Descricao"
           value={ cardDescription }
           onInputChange={ onInputChange }
         />
@@ -52,10 +52,12 @@ class Form extends React.Component {
           onInputChange={ onInputChange }
         />
         <Trunfo
+          name="Trunfo"
           checked={ cardTrunfo }
           onInputChange={ onInputChange }
         />
         <button
+          name="submit"
           type="submit"
           data-testid="save-button"
           disabled={ isSaveButtonDisabled }
