@@ -9,18 +9,19 @@ class App extends React.Component {
     this.state = {
       Nome: '',
       Descricao: '',
-      attr01: '',
-      attr02: '',
-      attr03: '',
+      attr01: '0',
+      attr02: '0',
+      attr03: '0',
       Imagem: '',
       Raridade: 'normal',
       Trunfo: false,
       // hasTrunfo: false,
+      cards: [],
       submit: true,
     };
   }
 
-  componentDidUpdate() {
+  componentDidUpdate() { // referência: https://pt-br.reactjs.org/docs/react-component.html#componentdidupdate
     const {
       Nome,
       Descricao,
@@ -55,6 +56,41 @@ class App extends React.Component {
   enableButton = (result) => {
     this.setState({
       submit: result,
+    });
+  }
+
+  newCard = () => {
+    const {
+      Nome,
+      Descricao,
+      attr01,
+      attr02,
+      attr03,
+      Imagem,
+      Raridade,
+      Trunfo,
+      cards,
+    } = this.state;
+    const cardFinished = {
+      Nome,
+      Descricao,
+      attr01,
+      attr02,
+      attr03,
+      Imagem,
+      Raridade,
+      Trunfo,
+    };
+    // referencia: https://stackoverflow.com/questions/37435334/correct-way-to-push-into-state-array
+    this.setState({
+      Nome: '',
+      Descricao: '',
+      attr01: '0',
+      attr02: '0',
+      attr03: '0',
+      Imagem: '',
+      Raridade: 'normal',
+      cards: [...cards, cardFinished],
     });
   }
 
@@ -98,7 +134,7 @@ class App extends React.Component {
           hasTrunfo={ this.hasTrunfo }
           isSaveButtonDisabled={ submit }
           onInputChange={ this.onInputChange }
-          onSaveButtonClick={ () => {} }
+          onSaveButtonClick={ this.newCard }
         />
         <Card
           cardName={ Nome }
