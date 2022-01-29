@@ -1,4 +1,5 @@
 import React from 'react';
+import { nanoid } from 'nanoid';
 import Form from './components/Form';
 import Card from './components/Card';
 
@@ -123,6 +124,7 @@ class App extends React.Component {
       Raridade,
       Trunfo,
       hasTrunfo,
+      cards,
       submit,
     } = this.state;
     return (
@@ -151,6 +153,18 @@ class App extends React.Component {
           cardRare={ Raridade }
           cardTrunfo={ Trunfo }
         />
+        <h2>Cards Finalizados</h2>
+        {cards.map((card) => (<Card
+          key={ nanoid() }
+          cardName={ card.Nome }
+          cardDescription={ card.Descricao }
+          cardAttr1={ card.attr01 }
+          cardAttr2={ card.attr02 }
+          cardAttr3={ card.attr03 }
+          cardImage={ card.Imagem }
+          cardRare={ card.Raridade }
+          cardTrunfo={ card.Trunfo }
+        />))}
       </div>
     );
   }
