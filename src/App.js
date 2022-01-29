@@ -15,7 +15,7 @@ class App extends React.Component {
       Imagem: '',
       Raridade: 'normal',
       Trunfo: false,
-      // hasTrunfo: false,
+      hasTrunfo: false,
       cards: [],
       submit: true,
     };
@@ -81,6 +81,11 @@ class App extends React.Component {
       Raridade,
       Trunfo,
     };
+    if (cardFinished.Trunfo) {
+      this.setState({
+        hasTrunfo: true,
+      });
+    }
     // referencia: https://stackoverflow.com/questions/37435334/correct-way-to-push-into-state-array
     this.setState({
       Nome: '',
@@ -117,7 +122,7 @@ class App extends React.Component {
       Imagem,
       Raridade,
       Trunfo,
-      // hasTrunfo,
+      hasTrunfo,
       submit,
     } = this.state;
     return (
@@ -131,7 +136,7 @@ class App extends React.Component {
           cardImage={ Imagem }
           cardRare={ Raridade }
           cardTrunfo={ Trunfo }
-          hasTrunfo={ this.hasTrunfo }
+          hasTrunfo={ hasTrunfo }
           isSaveButtonDisabled={ submit }
           onInputChange={ this.onInputChange }
           onSaveButtonClick={ this.newCard }
