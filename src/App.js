@@ -20,6 +20,44 @@ class App extends React.Component {
     };
   }
 
+  componentDidUpdate() {
+    const {
+      Nome,
+      Descricao,
+      attr01,
+      attr02,
+      attr03,
+      Imagem,
+      Raridade,
+      submit,
+    } = this.state;
+    const minAttr = 0;
+    const maxAttr = 90;
+    const sumAttrs = parseInt(attr01, 10) + parseInt(attr02, 10) + parseInt(attr03, 10);
+    const maxSumAttrs = 210;
+    const validateState = [
+      Nome.length !== 0,
+      Descricao.length !== 0,
+      Imagem.length !== 0,
+      Raridade.length > 0,
+      parseInt(attr01, 10) >= minAttr && parseInt(attr01, 10) <= maxAttr,
+      parseInt(attr02, 10) >= minAttr && parseInt(attr02, 10) <= maxAttr,
+      parseInt(attr03, 10) >= minAttr && parseInt(attr03, 10) <= maxAttr,
+      sumAttrs <= maxSumAttrs,
+    ];
+    if (validateState.every((state) => state) && submit === true) {
+      this.enableButton(false);
+    } else if (!(validateState.every((state) => state)) && submit === false) {
+      this.enableButton(true);
+    }
+  }
+
+  enableButton = (result) => {
+    this.setState({
+      submit: result,
+    });
+  }
+
   onInputChange = ({ target }) => {
     const { Trunfo } = this.state;
     if (target.type === 'checkbox') {
