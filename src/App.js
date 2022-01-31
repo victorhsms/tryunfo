@@ -60,7 +60,8 @@ class App extends React.Component {
     });
   }
 
-  newCard = () => {
+  newCard = (event) => {
+    event.preventDefault();
     const {
       Nome,
       Descricao,
@@ -81,6 +82,7 @@ class App extends React.Component {
       Imagem,
       Raridade,
       Trunfo,
+      key: nanoid(),
     };
     if (cardFinished.Trunfo) {
       this.setState({
@@ -96,8 +98,23 @@ class App extends React.Component {
       attr03: '0',
       Imagem: '',
       Raridade: 'normal',
+      Trunfo: false,
       cards: [...cards, cardFinished],
     });
+  }
+
+  deleteCard = ({ target: { attributes: { identifier, hastrunfo } } }) => {
+    const idCard = identifier.value;
+    const { cards } = this.state;
+    const newArrayCards = cards.filter((item) => item.key !== idCard);
+    this.setState({
+      cards: newArrayCards,
+    });
+    if (hastrunfo.value === 'true') {
+      this.setState({
+        hasTrunfo: false,
+      });
+    }
   }
 
   onInputChange = ({ target }) => {
@@ -154,17 +171,21 @@ class App extends React.Component {
           cardTrunfo={ Trunfo }
         />
         <h2>Cards Finalizados</h2>
-        {cards.map((card) => (<Card
-          key={ nanoid() }
-          cardName={ card.Nome }
-          cardDescription={ card.Descricao }
-          cardAttr1={ card.attr01 }
-          cardAttr2={ card.attr02 }
-          cardAttr3={ card.attr03 }
-          cardImage={ card.Imagem }
-          cardRare={ card.Raridade }
-          cardTrunfo={ card.Trunfo }
-        />))}
+        {cards.map((card) => (
+          <Card
+            key={ card.key }
+            identifier={ card.key }
+            cardName={ card.Nome }
+            cardDescription={ card.Descricao }
+            cardAttr1={ card.attr01 }
+            cardAttr2={ card.attr02 }
+            cardAttr3={ card.attr03 }
+            cardImage={ card.Imagem }
+            cardRare={ card.Raridade }
+            cardTrunfo={ card.Trunfo }
+            btn
+            btnAction={ this.deleteCard }
+          />))}
       </div>
     );
   }
