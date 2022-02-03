@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-class Image extends Component {
+class Input extends Component {
   render() {
-    const { name, type = 'text', value, onInputChange } = this.props;
+    const { name, message, id, type, value, onInputChange } = this.props;
     return (
-      <label htmlFor="image-imput">
-        {name}
+      <label htmlFor={ id }>
+        { message }
         <input
           type={ type }
-          id={ name }
+          id={ id }
           name={ name }
-          data-testid="image-input"
+          data-testid={ id }
           value={ value }
           onChange={ onInputChange }
         />
@@ -20,11 +20,13 @@ class Image extends Component {
   }
 }
 
-Image.propTypes = {
+Input.propTypes = {
   name: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
+  message: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   value: PropTypes.string.isRequired,
   onInputChange: PropTypes.func.isRequired,
 };
 
-export default Image;
+export default Input;

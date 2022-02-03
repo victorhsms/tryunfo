@@ -1,9 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Name from './form/Name';
+import Input from './Input';
 import TextArea from './form/TextArea';
 import Numbers from './form/Numbers';
-import Image from './form/Image';
 import Rarity from './form/Rarity';
 import Trunfo from './form/Trunfo';
 
@@ -25,8 +24,11 @@ class Form extends React.Component {
     } = this.props;
     return (
       <form>
-        <Name
+        <Input
           name="Nome"
+          id="name-input"
+          type="text"
+          message="Nome"
           value={ cardName }
           onInputChange={ onInputChange }
         />
@@ -40,8 +42,11 @@ class Form extends React.Component {
           value={ [cardAttr1, cardAttr2, cardAttr3] }
           onInputChange={ onInputChange }
         />
-        <Image
+        <Input
           name="Imagem"
+          id="image-input"
+          type="text"
+          message="Imagem"
           value={ cardImage }
           onInputChange={ onInputChange }
         />
