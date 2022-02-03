@@ -59,6 +59,8 @@ class Form extends React.Component {
         />
         { !hasTrunfo ? <Trunfo
           name="Trunfo"
+          message="Super Trybe Trunfo"
+          id="trunfo-input"
           checked={ cardTrunfo }
           onInputChange={ onInputChange }
         /> : <p>Você já tem um Super Trunfo em seu baralho</p>}
