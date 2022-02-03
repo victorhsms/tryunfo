@@ -21,6 +21,7 @@ class App extends React.Component {
       cards: [],
       submit: true,
       filterName: '',
+      filterRarity: 'todas',
     };
   }
 
@@ -119,6 +120,13 @@ class App extends React.Component {
     }
   }
 
+  filterManager = (card) => {
+    const { filterName, filterRarity } = this.state;
+    const name = card.Nome.includes(filterName);
+    const rarity = filterRarity === 'todas' ? true : card.Raridade === filterRarity;
+    return name && rarity;
+  }
+
   onInputChange = ({ target }) => {
     const { Trunfo } = this.state;
     if (target.type === 'checkbox') {
@@ -146,6 +154,7 @@ class App extends React.Component {
       cards,
       submit,
       filterName,
+      filterRarity,
     } = this.state;
     return (
       <div>
@@ -176,10 +185,11 @@ class App extends React.Component {
         <h2>Cards Finalizados</h2>
         <Search
           filterName={ filterName }
+          filterRarity={ filterRarity }
           onInputChange={ this.onInputChange }
         />
         {cards
-          .filter((card) => card.Nome.includes(filterName))
+          .filter((card) => this.filterManager(card))
           .map((card) => (
             <Card
               key={ card.key }

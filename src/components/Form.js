@@ -52,6 +52,7 @@ class Form extends React.Component {
         />
         <Rarity
           name="Raridade"
+          id="rare-input"
           values={ ['normal', 'raro', 'muito raro'] }
           value={ cardRare }
           onInputChange={ onInputChange }

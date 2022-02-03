@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Input from './Input';
+import Rarity from './form/Rarity';
 
 class Search extends Component {
   render() {
-    const { filterName, onInputChange } = this.props;
+    const { filterName, filterRarity, onInputChange } = this.props;
     return (
       <form>
         <Input
@@ -15,6 +16,13 @@ class Search extends Component {
           value={ filterName }
           onInputChange={ onInputChange }
         />
+        <Rarity
+          name="filterRarity"
+          id="rare-filter"
+          values={ ['todas', 'normal', 'raro', 'muito raro'] }
+          value={ filterRarity }
+          onInputChange={ onInputChange }
+        />
       </form>
     );
   }
@@ -22,6 +30,7 @@ class Search extends Component {
 
 Search.propTypes = {
   filterName: PropTypes.string.isRequired,
+  filterRarity: PropTypes.string.isRequired,
   onInputChange: PropTypes.func.isRequired,
 };
 
